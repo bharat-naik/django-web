@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<div class='container shadow-lg' style='margin-top:40px;' >
+	<div class="card text-white bg-dark mb-3">
+		<div class="card-header bg-secondary">
+		</div>
+		<div class="card-body">
+			<form action="{% url 'chat' %}" method="post">
+				{% csrf_token %}
+				<textarea name='message' class="form-control" placeholder='Write a message....'></textarea>
+				<button type="submit" class="btn btn-secondary mt-3 ">Send
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="container rounded bg-dark">
+	{% for i in amg %}
+		<div class="card  shadow-lg m-3" >
+			<div class="card-header bg-light">
+			<i class="fas fa-user-circle"></i>	{{i.nm}}
+			</div>
+			 <div class="card-body">
+			 	<p class="card-text">
+			 		{{i.txt}}
+			 	</p>
+			 	<p class="card-text">
+			 		<small class="text-muted">
+			 		<i class="fas fa-clock"></i>	{{i.created_at}}
+			 		</small>
+			 	</p>
+			 </div>
+		</div>
+	{% endfor %}
+</div>
+
+{% endblock %}
